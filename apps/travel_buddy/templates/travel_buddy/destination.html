@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Add Plan</title>
+	<link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+	<style type="text/css">
+		.container-fluid {
+			margin: 2%;
+			padding-right: 10%
+		}
+		.row {
+			margin: 2%;
+		}
+
+		.banner {
+			text-align: right;
+		}
+
+
+	</style>
+</head>
+<body>
+	<div class="container-fluid">
+		<div class="row banner">
+			<div class="col-sm-11">
+				<a href="/index">Home</a> | <a href="/logout">Logout</a>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-12">
+				<h3>{{destination.name}}</h3>
+				<ul>
+					<li>Planned By: {{destination.planned_by.name}}</li>
+					<li>Description: {{destination.desc}}</li>
+					<li>Travel Date From: {{destination.date_depart}}</li>
+					<li>Travel Date To: {{destination.date_return}}</li>
+				</ul>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-12">
+				<h3>Other users joining the trip:</h3>
+				<ul>
+					{% for user in other_travelers.all%}
+						<li>{{user.name}}</li>
+					{% endfor %}
+				</ul>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
+
+
+
+

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Add Plan</title>
+	<link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+	<style type="text/css">
+		.container-fluid {
+			margin: 2%;
+			padding-right: 10%
+		}
+		input[type="text"] {
+			width: 100%;
+		}
+		input[type="password"] {
+			width: 100%;
+		}
+
+		input[type="date"] {
+			width: 100%;
+		}
+
+		.row {
+			margin: 2%;
+		}
+
+		fieldset {
+			outline: 2px solid black;
+		}
+
+		h5 {
+			margin-top: -15px;
+			margin-left: 20px;
+			width: 100px;
+			background: white;
+		}
+
+		.error {
+			color: red;
+		}
+
+		.banner {
+			text-align: right;
+		}
+
+
+	</style>
+</head>
+<body>
+	<div class="container-fluid">
+		<div class="row banner">
+			<div class="col-sm-11">
+				<a href="/index">Home</a> | <a href="/logout">Logout</a>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-12">
+				<h3>Add a Trip</h3>
+			</div>
+		</div>
+		<ul class="error">
+			{% for k, v in destination_errors.iteritems %}
+				<li>{{v}}</li>
+			{% endfor %}
+		</ul>
+		<form action='/addtrip' method='post'>{% csrf_token %}
+			<div class="row">
+				<div class="col-sm-3">
+					Destination:
+				</div>
+				<div class="col-sm-7">
+					<input type="text" name="destination" required>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-3">
+					Description:
+				</div>
+				<div class="col-sm-7">
+					<input type="text" name="description">
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-4">
+					Travel Date From:
+				</div>
+				<div class="col-sm-6">
+					<input type="date" name="date_depart" requred>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-4">
+					Travel Date To:
+				</div>
+				<div class="col-sm-6">
+					<input type="date" name="date_return" required>
+				</div>
+			</div>
+			
+			<div class="row">
+				<div class='col-sm-9'></div>
+				<div class="col-sm-3"><input type="submit" Value="Add Trip"></div>
+			</div>
+		</form>
+	</div>
+</body>
+</html>
+
+
+
+

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Travel Dashboard</title>
+	<link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+	<style type="text/css">
+		.container-fluid {
+			margin: 2%;
+			padding-right: 10%
+		}
+		.row {
+			margin: 2%;
+		}
+
+		.banner {
+			text-align: right;
+		}
+
+		.trip_schedules {
+			border: 2px solid black;
+		}
+
+		.trip_schedules .row:nth-of-type(even){
+			background: gray;
+		}
+
+
+	</style>
+</head>
+<body>
+	<div class="container-fluid">
+		<div class="row banner">
+			<div class="col-sm-11">
+				<a href="/logout">Logout</a>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-12">
+				<h3>Hello, {{username}}!</h3>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-12">
+				<h3>Your Trip Schedules</h3>
+			</div>
+		</div>
+		<div class="row trip_schedules">
+			<div class="col-sm-11 col-xs-12">
+				<div class="row">
+					<div class="col-sm-2">Destination</div>
+					<div class="col-sm-2">Travel Start Date</div>
+					<div class="col-sm-2">Travel End Date</div>
+					<div class="col-sm-6">Description</div>
+				</div>
+				{% for destination in user_trips%}
+				<div class="row">
+					<div class="col-sm-2"><a href="/destinations/{{destination.id}}">{{destination.name}}</a></div>
+					<div class="col-sm-2">{{destination.date_depart}}</div>
+					<div class="col-sm-2">{{destination.date_return}}</div>
+					<div class="col-sm-6">{{destination.desc}}</div>
+				</div>
+				{% endfor %}
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-12">
+				<h3>Other User's Travel Plans</h3>
+			</div>
+		</div>
+		<div class="row trip_schedules">
+			<div class="col-sm-11 col-xs-12">
+				<div class="row">
+					<div class="col-sm-2">Name</div>
+					<div class="col-sm-3">Destination</div>
+					<div class="col-sm-2">Travel Start Date</div>
+					<div class="col-sm-2">Travel End Date</div>
+					<div class="col-sm-3">Do You Want to Join?</div>
+				</div>
+				{% for destination in other_trips%}
+				<div class="row">
+					<div class="col-sm-2">{{destination.planned_by.name}}</div>
+					<div class="col-sm-3"><a href="/destinations/{{destination.id}}">{{destination.name}}</a></div>
+					<div class="col-sm-2">{{destination.date_depart}}</div>
+					<div class="col-sm-2">{{destination.date_return}}</div>
+					<div class="col-sm-3"><a href="/join/{{destination.id}}">Join</a></div>
+				</div>
+				{% endfor %}
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-9"></div>
+			<div class="col-sm-3 col-xs-12">
+				<a href="/addtrip">Add Travel Plan</a>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
+
+
+
+
